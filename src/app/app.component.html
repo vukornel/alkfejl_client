@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <button mat-button href="/">
+    <mat-icon>home</mat-icon>
+    Drink list
+  </button>
+
+  <span class="fill-remaining-space" fxHide="false" fxHide.gt-sm></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+  </div>
+  
+  <button mat-button routerLink="drinks">Drinks</button>
+  <button mat-button routerLink="/drink/create/wine">New Drinks</button>
+
+  <button mat-button routerLink="users">Users</button>
+  <button mat-button routerLink="/adduser">Add user</button>
+  
+  <button mat-button routerLink="beers">Beers</button>
+  <button mat-button routerLink="/drink/create/beer">Add beer</button>
+  
+  <button mat-button routerLink="wines">Wines</button>
+  <button mat-button routerLink="/drink/create/wine">Add wine</button>
+
+  <div *ngIf="authService.isLoggedIn">
+    <span>Hello, !</span>
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
+
+</mat-toolbar>
+
+<div *ngIf="!authService.isLoggedIn">
+  <button mat-button routerLink="/login">Login</button>
+</div>
+
+<router-outlet></router-outlet>

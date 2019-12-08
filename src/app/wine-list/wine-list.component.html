@@ -1,0 +1,33 @@
+<div>
+    <h2>Wines list</h2>
+<table>
+    <tr>
+      <th>
+        Bor azonosítója
+      </th>
+      <th>
+          Bor típusa
+      </th>
+      <th>
+          Bor színe
+      </th>
+      <th>
+          Bor mennyisége
+      </th>
+    </tr>
+    <tr *ngFor="let wine of wines">
+      <td>
+        {{ wine.id }}
+      </td>
+      <td>
+        {{ wine.type }}
+      </td>
+      <td>
+        {{ wine.colors }}
+      </td>
+      <td>
+        {{ wine.amount }}
+      </td>
+    </tr>
+  </table>
+</div>
