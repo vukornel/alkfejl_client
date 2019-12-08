@@ -20,6 +20,7 @@ import { BeerListComponent } from './beer-list/beer-list.component';
 import { BeerFormComponent } from './beer-form/beer-form.component';
 import { WineListComponent } from './wine-list/wine-list.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { WineListComponent } from './wine-list/wine-list.component';
     BeerListComponent,
     BeerFormComponent,
     WineListComponent,
-  ],
+    ],
   imports: [
     NgbModule,
     FormsModule,

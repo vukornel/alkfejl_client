@@ -37,7 +37,7 @@ export class AuthService {
       return Promise.reject();
     }
   }
-  
+
   logout() {
     httpOptions.headers = httpOptions.headers.set('Authorization', ``);
     this.isLoggedIn = false;

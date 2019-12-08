@@ -1,46 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'app-login',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
+
 export class LoginFormComponent implements OnInit {
-  
-  message: string;
-  hidePassword = true;
-
-  form = this.fb.group({
-    username: ['', [ Validators.required ]],
-    password: ['', [ Validators.required ]],
-  });
-
-  get username() { return this.form.get('username'); }
-  get password() { return this.form.get('password'); }
+  model: any = {};
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private fb: FormBuilder
+      private route: ActivatedRoute,
+      private router: Router,
+      private http: HttpClient
   ) { }
 
   ngOnInit() {
+      sessionStorage.setItem('token', '');
   }
 
-  async onSubmit() {
-    try {
-      this.message = null;
-      await this.authService.login(this.username.value, this.password.value);
-      if (this.authService.redirectUrl) {
-        this.router.navigate([this.authService.redirectUrl]);
-      } else {
-        this.router.navigate(['/']);
-      }
-    } catch (e) {
-      this.message = 'Cannot log in!';
-    }
+  login() {
+      let url = 'http://localhost:8080/users/login';
+      this.http.post<Observable<boolean>>(url, {
+          userName: this.model.username,
+          email: this.model.username,
+          password: this.model.password,
+          roles: this.model.username
+      }).subscribe(isValid => {
+          if (isValid) { //?
+              sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
+              this.router.navigate(['']);
+          } else {
+              alert("Authentication failed.")
+          }
+      });
   }
 }

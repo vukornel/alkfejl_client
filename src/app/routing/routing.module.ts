@@ -15,7 +15,7 @@ import { BeerFormComponent } from '../beer-form/beer-form.component';
 import { WineListComponent } from '../wine-list/wine-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/drink/wines', pathMatch: 'full'},
+  {path: '', redirectTo: 'wines', pathMatch: 'full'},
   {path: 'drinks', component: DrinkListComponent/*, canActivate: [AuthGuard]*/},
   {path: 'drink/create/wine', component: DrinkCreateComponent},
 
